@@ -17,6 +17,9 @@ function OrdenesComponent() {
   return (
     <div className="bg-warning bg-opacity-10 text-dark my-5 mx-auto" style={{borderRadius: '1rem', maxWidth: '1000px'}}>
         <div className="main">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">   
+            <button type="button" class="btn btn-outline-warning"cd > Crear orden </button>
+        </div>
         <DataTableExtensions {...tableData}>
             <DataTable
             columns={columns}
