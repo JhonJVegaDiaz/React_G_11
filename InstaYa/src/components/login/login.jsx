@@ -54,7 +54,7 @@ const LoginComponent = () => {
     if ((user!=='')
     && (password!=='')
     && (!Boolean(errorUser)) 
-    && (!Boolean(errorPassword))) {location.replace("/")};
+    && (!Boolean(errorPassword))) {location.replace("/ordenes")};
   };
 
   return (
