@@ -9,6 +9,27 @@ body {
     background: #f6f9fc;
   }
   
+  .ordenes-container{
+    background-color: rgba(239, 249, 218, 0.3);
+    margin-top:0;
+    margin-bottom: 0;
+  }
+
+
+.titulo-ordenes{
+  font-family: Lato, sans-serif;
+  font-weight: 7px;
+  text-align: center;
+  justify-items: center;
+  padding:0;
+  margin: 10px 0;
+  color: white;
+  background-color: #ddbd18;
+}
+
+#crear-orden{
+  margin: 15px;
+}
   .dlink {
     text-decoration: none !important;
     color: #010c12 !important;

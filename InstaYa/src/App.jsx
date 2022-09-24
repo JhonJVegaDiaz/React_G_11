@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginComponent from './components/login/login';
 import SignUpComponent from './components/signUp/signup';
 import OrdenesComponent from './components/ordenes/ordenes';
+import PaginaPrincipal from './components/PaginaPrincipal/PaginaPrincipal';
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginComponent />} />
+          <Route path="/" element={<PaginaPrincipal />} />
           <Route path="/Login" element={<LoginComponent />} />
           <Route path="/SignUp" element={<SignUpComponent />} />
           <Route path="/ordenes" element={<OrdenesComponent />} />
