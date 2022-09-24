@@ -4,6 +4,10 @@ const handleClick = (title) => {
   console.log(`You clicked me! ${title}`);
 };
 
+const submitHandler = (event) => {
+  location.replace("/editarOrden");
+};
+
 export const columns = [
   {
     name: "No orden",
@@ -33,7 +37,7 @@ export const columns = [
       <button
       key={d.title}
       type="button" class="btn btn-outline-primary"
-      onClick={handleClick.bind(this, d.title)}
+      onClick={submitHandler}
       style={{ marginRight: "5px" }} >
       Edit
     </button>,

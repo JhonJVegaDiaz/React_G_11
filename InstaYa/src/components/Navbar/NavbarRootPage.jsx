@@ -39,7 +39,7 @@ function NavBarComponent() {
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item href="/">Exit</NavDropdown.Item>
                                     </NavDropdown>
-                                    <Nav.Link href="/ordenes">Solicitar servicio</Nav.Link>
+                                    <Nav.Link href="/crearOrden">Solicitar servicio</Nav.Link>
                                     <Nav.Link href="#action3:'ruta a página principal(/client-service)'">Client service</Nav.Link>
                                     <Navbar.Text>
                                         <p className="signed-navbar">

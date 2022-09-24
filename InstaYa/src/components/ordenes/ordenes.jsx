@@ -16,6 +16,10 @@ function OrdenesComponent() {
     data
   };
 
+  const submitHandler = (event) => {
+    location.replace("/crearOrden");
+  };
+
   return (
     <>
       <Container className="lobbie-principal">
@@ -24,9 +28,9 @@ function OrdenesComponent() {
 
       <Container className='ordenes-container'>
         <div className="bg-warning bg-opacity-10 text-dark my-5 mx-auto" style={{ borderRadius: '1rem', maxWidth: '1000px' }}>
-          <div className="main" style={{padding:'0', minHeight: '150px'}}>
+          <div className="main" style={{ padding: '0', minHeight: '150px' }}>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button id = "crear-orden"type="button" class="btn btn-outline-warning" cd > Crear orden </button>
+              <button type="button" onClick={submitHandler} class="btn btn-outline-warning" cd > Crear orden </button>
             </div>
             <h1 className="titulo-ordenes">Resumen de Servicios</h1>
             <DataTableExtensions {...tableData} className="filtro">
