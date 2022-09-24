@@ -49,19 +49,19 @@ export const columns = [
 export const data = [
   {
     id: 1,
-    estado: "entregado",
+    estado: "Guardado",
     fecha: "20/09/2022",
     direccion: "Callle 1 # 1-1",
   },
   {
     id: 2,
-    estado: "cancelado",
+    estado: "Cancelado",
     fecha: "21/09/2022",
     direccion: "Callle 1 # 1-1",
   },
   {
     id: 3,
-    estado: "generado",
+    estado: "Cumplido",
     fecha: "21/09/2022",
     direccion: "Callle 1 # 1-1",
   }   

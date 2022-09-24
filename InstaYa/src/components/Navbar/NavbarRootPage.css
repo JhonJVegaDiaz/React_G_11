@@ -1,0 +1,15 @@
+.navbar-container{
+    height: 5rem;
+    width: 200%;
+    background-color: #ddbd18;
+}
+
+.signed-navbar{
+    margin: 0;
+    margin-left:80px;
+}
+
+.login-navbar{
+    margin-left:80px;
+    width: 100px;
+}

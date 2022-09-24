@@ -1,0 +1,6 @@
+
+.imagen-principal-container {
+    display: flex;
+    justify-content: center ;
+    background-color: rgba(239, 249, 218, 0.3);
+}
