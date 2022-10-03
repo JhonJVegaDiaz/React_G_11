@@ -1,7 +1,13 @@
+.mb-3 {
+padding: 0;
+}
+
 .navbar-container{
-    height: 5rem;
+    height: 8rem;
     width: 200%;
     background-color: #ddbd18;
+    margin-bottom: 25px;
+    margin-top: 0;
 }
 
 .signed-navbar{

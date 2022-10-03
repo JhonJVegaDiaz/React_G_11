@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap';
-import '../Navbar/NavbarRootPage.css'
+import './NavbarRootPage.css'
 import logo from '../../assets/img/icon-logo.jpg';
 
 
