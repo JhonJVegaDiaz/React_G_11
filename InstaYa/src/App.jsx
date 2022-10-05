@@ -6,8 +6,20 @@ import OrdenesComponent from './components/ordenes/ordenes';
 import PaginaPrincipal from './components/PaginaPrincipal/PaginaPrincipal';
 import CrearOrdenComponent from './components/crearOrden/crearOrden';
 import EditarOrdenComponent from './components/editarOrden/editarOrden';
+import TablaUsers from './mocks/data/TablaUsers';
+import USERS from './mocks/users';
+import { useState, useEffect } from 'react';
 
 function App() {
+  
+  const [usersApi, setUsersApi] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3004/users')
+    .then(response => response.json())
+    .then(data => setUsersApi(data))
+  }, []);
+
   return (
     <>
       <BrowserRouter>
