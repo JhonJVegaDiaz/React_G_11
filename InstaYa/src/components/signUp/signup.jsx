@@ -15,7 +15,19 @@ from 'mdb-react-ui-kit';
 import '../signUp/signup.css'
 
 
-const MIN = 6;
+async function loginUser(credentials) {
+ return fetch('http://localhost:9000/api/users/', {
+   method: 'POST',
+   headers: {
+     'Content-Type': 'application/json'
+   },
+   body: JSON.stringify(credentials)
+ })
+   .then(data => data.json())
+}
+
+const MIN = 5;
+const MIN_PASSWORD = 6;
 const MAX = 50;
 const GROUP = `[a-zñáéíóúüA-ZÁÉÍÓÚÜÑ]{${MIN},${MAX}}`;
 const VALIDATION = new RegExp(`^${GROUP}( ${GROUP})*$`);
@@ -35,8 +47,9 @@ const EMAIL_VALIDATION = (input) => {
   if (!input.match(formato_email)) return "Debes ingresar un email electronico valido!";
   else return '';
 };
+
 const PASSWORD_VALIDATION = (input) => {
-  if (password.value.length <= 8) return "Debes ingresar una password con mas de 8 caracteres";
+  if (password.value.length <= MIN_PASSWORD) return `Debes ingresar una password con mas de ${MIN_PASSWORD} caracteres`;
   else return '';
 };
 
@@ -80,7 +93,18 @@ const SignUpComponent = () => {
       && (!Boolean(errorName))
       && (!Boolean(errorUser))
       && (!Boolean(errorEmail))
-      && (!Boolean(errorPassword))) { location.replace("/") };
+      && (!Boolean(errorPassword))) {
+
+        const userLogin = {
+            email: email,
+            username: user,
+            name: name,
+            password: password
+        };
+
+        loginUser(userLogin)
+
+    };
   };
 
   return (
