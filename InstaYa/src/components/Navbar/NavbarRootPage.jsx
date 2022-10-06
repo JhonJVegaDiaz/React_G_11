@@ -40,7 +40,7 @@ function NavBarComponent() {
                                         <NavDropdown.Item href="/">Exit</NavDropdown.Item>
                                     </NavDropdown>
                                     <Nav.Link href="/crearOrden">Solicitar servicio</Nav.Link>
-                                    <Nav.Link href="#action3:'ruta a página principal(/client-service)'">Client service</Nav.Link>
+                                    <Nav.Link href="/signup">Crear usuario</Nav.Link>
                                     <Navbar.Text>
                                         <p className="signed-navbar">
                                             Signed:
