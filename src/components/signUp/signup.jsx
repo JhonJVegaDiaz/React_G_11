@@ -15,17 +15,7 @@ from 'mdb-react-ui-kit';
 import '../signUp/signup.css'
 
 
-async function loginUser(credentials) {
- return fetch('http://localhost:9000/api/users/', {
-   method: 'POST',
-   headers: {
-     'Content-Type': 'application/json'
-   },
-   body: JSON.stringify(credentials)
- })
-   .then(data => data.json())
-}
-
+let USER_CREATED = {};
 const MIN = 5;
 const MIN_PASSWORD = 6;
 const MAX = 50;
@@ -41,6 +31,21 @@ const CUSTOM_VALIDATION = (input) => {
   else if (!matchesRegex) return 'Formato inválido';
   else return '';
 };
+
+
+async function loginUser(credentials) {
+ return fetch('http://localhost:9000/api/users/', {
+   method: 'POST',
+   headers: {
+     'Content-Type': 'application/json'
+   },
+   body: JSON.stringify(credentials)
+ })
+   .then(data => data.json())
+    .then(body => {
+        USER_CREATED = body.error;
+    })
+}
 
 const EMAIL_VALIDATION = (input) => {
   var formato_email = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
@@ -63,6 +68,10 @@ const SignUpComponent = () => {
   const [errorUser, setErrorUser] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
 
+// States for checking the errors
+  const [submitted, setSubmitted] = useState(false);
+
+
   const changeHandlerName = (event) => {
     setName(event.target.value);
     const errorName = CUSTOM_VALIDATION(event.target.value);
@@ -78,6 +87,7 @@ const SignUpComponent = () => {
     const errorUser = CUSTOM_VALIDATION(event.target.value);
     setErrorUser(errorUser);
   };
+
   const changeHandlerPassword = (event) => {
     setPassword(event.target.value);
     const errorPassword = PASSWORD_VALIDATION(event.target.value);
@@ -101,8 +111,9 @@ const SignUpComponent = () => {
             name: name,
             password: password
         };
-
         loginUser(userLogin)
+        setSubmitted(true);
+
 
     };
   };
@@ -132,7 +143,6 @@ const SignUpComponent = () => {
                   <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-dark' label='User Name' id='user' type='txt' size="lg" value={user} onChange={changeHandlerUser} />
                   {Boolean(errorUser) && <p>{errorUser}</p>}
                   <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-dark' label='Password' id='password' type='password' size="lg" value={password} onChange={changeHandlerPassword} />
-                  {Boolean(errorPassword) && <p>{errorPassword}</p>}
                   <button type="button" className="btn btn-outline-success mx-2 px-5" onClick={submitHandler}> <a href="/" >Save</a> </button>
 
                 </MDBCardBody>
