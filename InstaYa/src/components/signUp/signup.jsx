@@ -40,15 +40,22 @@ const PASSWORD_VALIDATION = (input) => {
   else return '';
 };
 
+const CONFIRM_PASSWORD_VALIDATION = (input) => {
+  if (password.value.length <= 8) return "Debes ingresar una password con mas de 8 caracteres";
+  else return '';
+};
+
 const SignUpComponent = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
+  const [ConfirmPassword, setConfirmPassword] = useState('');
   const [errorName, setErrorName] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
   const [errorUser, setErrorUser] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
+  const [errorConfirmPassword, setErrorConfirmPassword] = useState('');
 
   const changeHandlerName = (event) => {
     setName(event.target.value);
@@ -70,6 +77,11 @@ const SignUpComponent = () => {
     const errorPassword = PASSWORD_VALIDATION(event.target.value);
     setErrorPassword(errorPassword);
   };
+  const changeHandlerConfirmPassword = (event) => {
+    setConfirmPassword(event.target.value);
+    const errorConfirmPassword = CONFIRM_PASSWORD_VALIDATION(event.target.value);
+    setErrorConfirmPassword(errorConfirmPassword);
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -77,10 +89,12 @@ const SignUpComponent = () => {
       && (email !== '')
       && (user !== '')
       && (password !== '')
+      && (ConfirmPassword !== '')
       && (!Boolean(errorName))
       && (!Boolean(errorUser))
       && (!Boolean(errorEmail))
-      && (!Boolean(errorPassword))) { location.replace("/") };
+      && (!Boolean(errorPassword) 
+      && (!Boolean(errorConfirmPassword)))) { location.replace("/") }
   };
 
   return (
@@ -109,6 +123,8 @@ const SignUpComponent = () => {
                   {Boolean(errorUser) && <p>{errorUser}</p>}
                   <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-dark' label='Password' id='password' type='password' size="lg" value={password} onChange={changeHandlerPassword} />
                   {Boolean(errorPassword) && <p>{errorPassword}</p>}
+                  <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-dark' label='Confirm Password' id='confirm-password' type='password' size="lg" value={ConfirmPassword} onChange={changeHandlerConfirmPassword} />
+                  {Boolean(errorConfirmPassword) && <p>{errorConfirmPassword}</p>}
                   <button type="button" className="btn btn-outline-success mx-2 px-5" onClick={submitHandler}> <a href="/" >Save</a> </button>
 
                 </MDBCardBody>
