@@ -125,7 +125,7 @@ const SignUpComponent = () => {
                   {Boolean(errorPassword) && <p>{errorPassword}</p>}
                   <MDBInput wrapperClass='mb-4 mx-5 w-100' labelClass='text-dark' label='Confirm Password' id='confirm-password' type='password' size="lg" value={ConfirmPassword} onChange={changeHandlerConfirmPassword} />
                   {Boolean(errorConfirmPassword) && <p>{errorConfirmPassword}</p>}
-                  <button type="button" className="btn btn-outline-success mx-2 px-5" onClick={submitHandler}> <a href="/" >Save</a> </button>
+                  <button type="button" className="btn btn-outline-success mx-2 px-5" onClick={submitHandler}>Save</button>
 
                 </MDBCardBody>
               </MDBCard>

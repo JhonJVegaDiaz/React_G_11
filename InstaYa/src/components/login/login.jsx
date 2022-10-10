@@ -11,10 +11,22 @@ import {
   MDBCardBody,
   MDBInput,
 }
-from 'mdb-react-ui-kit';
+  from 'mdb-react-ui-kit';
 import '../login/login.css'
 
-const MIN = 6;
+async function loginUser(credentials) {
+  return fetch('http://localhost:9000/api/Login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+}
+
+const MIN = 5;
+const MIN_PASSWORD = 6;
 const MAX = 50;
 const GROUP = `[a-zñáéíóúüA-ZÁÉÍÓÚÜÑ]{${MIN},${MAX}}`;
 const VALIDATION = new RegExp(`^${GROUP}( ${GROUP})*$`);
@@ -24,16 +36,18 @@ const CUSTOM_VALIDATION = (input) => {
 
   if (input.length < MIN) return `Se necesitan mínimo ${MIN} caracteres`;
   else if (input.length > MAX * 4)
-    return `Se necesitan aceptan  máximo ${MAX * 4} caracteres`;
+    return `Se aceptan  máximo ${MAX * 4} caracteres`;
   else if (!matchesRegex) return 'Formato inválido';
   else return '';
 };
 
 
 const PASSWORD_VALIDATION = (input) => {
-  if (password.value.length <= 8) return "Debes ingresar una password con mas de 8 caracteres";
+  if (password.value.length <= 8) return `Debes ingresar una password con al menos ${MIN_PASSWORD} caracteres`;
   else return '';
 };
+
+
 
 const LoginComponent = () => {
   const [user, setUser] = useState('');
@@ -57,7 +71,13 @@ const LoginComponent = () => {
     if ((user !== '')
       && (password !== '')
       && (!Boolean(errorUser))
-      && (!Boolean(errorPassword))) { location.replace("/ordenes") };
+      && (!Boolean(errorPassword))) {
+      const userLogin = {
+        username: user,
+        password: password
+      };
+      loginUser(userLogin)
+    };
   };
 
   return (
