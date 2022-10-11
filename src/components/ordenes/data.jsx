@@ -8,6 +8,16 @@ const submitHandler = (event) => {
   location.replace("/editarOrden");
 };
 
+(async () => {
+    // GET request using fetch with async/await
+    const headers = {
+        'authorization': 'eyJhbGciOiJIUzI1NiJ9.eGhsYXI.IzpZbjzI6W0O4xrxjselk0XYNjA23pG0fpkKFx4AqKU'
+    }
+    const response = await fetch('http://localhost:9000/api/ordenes', { headers });
+    const data = await response.json();
+    console.log(data);
+})();
+
 export const columns = [
   {
     name: "No orden",

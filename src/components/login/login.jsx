@@ -3,6 +3,7 @@ import Footer from "../Footer/Footer";
 import { Container } from 'react-bootstrap';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import useToken from '../useToken';
 import {
   MDBBtn,
   MDBContainer,
@@ -21,8 +22,7 @@ import {
 }
 from 'mdb-react-ui-kit';
 import '../login/login.css'
-
-
+let datosRe = "";
 async function loginUser(credentials) {
  return fetch('http://localhost:9000/api/signin/', {
    method: 'POST',
@@ -38,7 +38,7 @@ async function loginUser(credentials) {
             }
 
             if(body.accessToken){
-                console.log(body)
+                datosRe = body.accessToken;
             }
         })
 }
@@ -72,6 +72,7 @@ const LoginComponent = () => {
   const [errorPassword, setErrorPassword] = useState('');
   const [basicModal, setBasicModal] = useState(false);
   const toggleShow = () => setBasicModal(!basicModal);
+  const { token, setToken } = useToken();
 
   const changeHandlerUser = (event) => {
     setUser(event.target.value);
@@ -97,6 +98,8 @@ const LoginComponent = () => {
         };
 
         loginUser(userLogin)
+        setToken(datosRe)
+
     };
   };
 
