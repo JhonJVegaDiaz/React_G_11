@@ -11,13 +11,20 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,  
 }
 from 'mdb-react-ui-kit';
 import '../login/login.css'
 
 
 async function loginUser(credentials) {
- return fetch('http://localhost:9000/auth/signin/', {
+ return fetch('http://localhost:9000/api/signin/', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json'
@@ -25,6 +32,15 @@ async function loginUser(credentials) {
    body: JSON.stringify(credentials)
  })
    .then(data => data.json())
+        .then(body => {
+            if(body.error){
+                document.getElementById("modalBtn").click()
+            }
+
+            if(body.accessToken){
+                console.log(body)
+            }
+        })
 }
 
 const MIN = 5;
@@ -54,6 +70,8 @@ const LoginComponent = () => {
   const [password, setPassword] = useState('');
   const [errorUser, setErrorUser] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
+  const [basicModal, setBasicModal] = useState(false);
+  const toggleShow = () => setBasicModal(!basicModal);
 
   const changeHandlerUser = (event) => {
     setUser(event.target.value);
@@ -126,6 +144,26 @@ const LoginComponent = () => {
       <Container >
         <Footer />
       </Container>
+      <>
+      <MDBBtn onClick={toggleShow} id='modalBtn'>LAUNCH DEMO MODAL</MDBBtn>
+      <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
+        <MDBModalDialog>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Error</MDBModalTitle>
+              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>El usuario no está creado</MDBModalBody>
+
+            <MDBModalFooter>
+              <MDBBtn color='secondary' onClick={toggleShow}>
+                Cerrar
+              </MDBBtn>
+            </MDBModalFooter>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
+    </>
     </>
   );
 }

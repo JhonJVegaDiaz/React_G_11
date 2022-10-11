@@ -1,6 +1,6 @@
 import NavBarComponent from "../Navbar/NavbarRootPage";
 import Footer from "../Footer/Footer";
-import { Container } from 'react-bootstrap';
+import { Container, ModalBody } from 'react-bootstrap';
 import React, { useState } from 'react';
 import {
   MDBBtn,
@@ -10,9 +10,18 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,  
 }
 from 'mdb-react-ui-kit';
 import '../signUp/signup.css'
+
+
 
 
 let USER_CREATED = {};
@@ -33,8 +42,10 @@ const CUSTOM_VALIDATION = (input) => {
 };
 
 
+
 async function loginUser(credentials) {
- return fetch('http://localhost:9000/api/users/', {
+  
+ return fetch('http://localhost:9000/api/signup/', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/json'
@@ -44,6 +55,8 @@ async function loginUser(credentials) {
    .then(data => data.json())
     .then(body => {
         USER_CREATED = body.error;
+        if (!body.error) {return location.replace("/Login")}
+        else {document.getElementById("modalBtn").click()};
     })
 }
 
@@ -67,6 +80,10 @@ const SignUpComponent = () => {
   const [errorEmail, setErrorEmail] = useState('');
   const [errorUser, setErrorUser] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
+
+  const [basicModal, setBasicModal] = useState(false);
+  const toggleShow = () => setBasicModal(!basicModal);
+
 
 // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
@@ -95,6 +112,7 @@ const SignUpComponent = () => {
   };
 
   const submitHandler = (event) => {
+    
     event.preventDefault();
     if ((name !== '')
       && (email !== '')
@@ -111,7 +129,7 @@ const SignUpComponent = () => {
             name: name,
             password: password
         };
-        loginUser(userLogin)
+        loginUser(userLogin);
         setSubmitted(true);
 
 
@@ -157,7 +175,29 @@ const SignUpComponent = () => {
       <Container >
         <Footer />
       </Container>
+      <>
+      <MDBBtn onClick={toggleShow} id='modalBtn'>LAUNCH DEMO MODAL</MDBBtn>
+      <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
+        <MDBModalDialog>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Error</MDBModalTitle>
+              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>El usuario ya está creado</MDBModalBody>
+
+            <MDBModalFooter>
+              <MDBBtn color='secondary' onClick={toggleShow}>
+                Cerrar
+              </MDBBtn>
+            </MDBModalFooter>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
     </>
+
+    </>
+
   );
 }
 
