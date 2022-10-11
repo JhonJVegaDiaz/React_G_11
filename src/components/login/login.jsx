@@ -2,6 +2,7 @@ import NavBarComponent from "../Navbar/NavbarRootPage";
 import Footer from "../Footer/Footer";
 import { Container } from 'react-bootstrap';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   MDBBtn,
   MDBContainer,
@@ -10,11 +11,40 @@ import {
   MDBCard,
   MDBCardBody,
   MDBInput,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,  
 }
 from 'mdb-react-ui-kit';
 import '../login/login.css'
 
-const MIN = 6;
+
+async function loginUser(credentials) {
+ return fetch('http://localhost:9000/api/signin/', {
+   method: 'POST',
+   headers: {
+     'Content-Type': 'application/json'
+   },
+   body: JSON.stringify(credentials)
+ })
+   .then(data => data.json())
+        .then(body => {
+            if(body.error){
+                document.getElementById("modalBtn").click()
+            }
+
+            if(body.accessToken){
+                console.log(body)
+            }
+        })
+}
+
+const MIN = 5;
+const MIN_PASSWORD = 6;
 const MAX = 50;
 const GROUP = `[a-zñáéíóúüA-ZÁÉÍÓÚÜÑ]{${MIN},${MAX}}`;
 const VALIDATION = new RegExp(`^${GROUP}( ${GROUP})*$`);
@@ -31,7 +61,7 @@ const CUSTOM_VALIDATION = (input) => {
 
 
 const PASSWORD_VALIDATION = (input) => {
-  if (password.value.length <= 8) return "Debes ingresar una password con mas de 8 caracteres";
+  if (password.value.length <= MIN_PASSWORD) return `Debes ingresar una password con mas de ${MIN_PASSWORD} caracteres`;
   else return '';
 };
 
@@ -40,6 +70,8 @@ const LoginComponent = () => {
   const [password, setPassword] = useState('');
   const [errorUser, setErrorUser] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
+  const [basicModal, setBasicModal] = useState(false);
+  const toggleShow = () => setBasicModal(!basicModal);
 
   const changeHandlerUser = (event) => {
     setUser(event.target.value);
@@ -57,7 +89,15 @@ const LoginComponent = () => {
     if ((user !== '')
       && (password !== '')
       && (!Boolean(errorUser))
-      && (!Boolean(errorPassword))) { location.replace("/ordenes") };
+      && (!Boolean(errorPassword))) { 
+
+        const userLogin = {
+            username: user,
+            password: password
+        };
+
+        loginUser(userLogin)
+    };
   };
 
   return (
@@ -104,6 +144,26 @@ const LoginComponent = () => {
       <Container >
         <Footer />
       </Container>
+      <>
+      <MDBBtn onClick={toggleShow} id='modalBtn'>LAUNCH DEMO MODAL</MDBBtn>
+      <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
+        <MDBModalDialog>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Error</MDBModalTitle>
+              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody>El usuario no está creado</MDBModalBody>
+
+            <MDBModalFooter>
+              <MDBBtn color='secondary' onClick={toggleShow}>
+                Cerrar
+              </MDBBtn>
+            </MDBModalFooter>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
+    </>
     </>
   );
 }
