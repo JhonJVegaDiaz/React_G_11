@@ -127,7 +127,8 @@ const SignUpComponent = () => {
             email: email,
             username: user,
             name: name,
-            password: password
+            password: password,
+            passwordConfirmation: password
         };
         loginUser(userLogin);
         setSubmitted(true);

@@ -9,10 +9,12 @@ import EditarOrdenComponent from './components/editarOrden/editarOrden';
 import TablaUsers from './mocks/data/TablaUsers';
 import USERS from './mocks/users';
 import { useState, useEffect } from 'react';
+import useToken from './components/usetoken'
 
 function App() {
   
   const [usersApi, setUsersApi] = useState([]);
+  const [token, setToken] = '';
 
   useEffect(() => {
     fetch('http://localhost:3004/users')

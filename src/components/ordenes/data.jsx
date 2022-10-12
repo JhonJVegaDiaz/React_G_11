@@ -50,6 +50,7 @@ export const columns = [
   }
 ];
 
+/*
 export const data = [
   {
     id: 1,
@@ -69,4 +70,4 @@ export const data = [
     fecha: "21/09/2022",
     direccion: "Callle 1 # 1-1",
   }   
-];
+];*/
