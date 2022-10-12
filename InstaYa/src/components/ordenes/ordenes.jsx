@@ -53,7 +53,7 @@ const data = ordenes;
               <button type="button" onClick={submitHandler} className="btn btn-outline-warning" cd > Crear orden </button>
             </div>
             <h1 className="titulo-ordenes">Resumen de Servicios</h1>
-            {/* Renderizar para mostrar data en datatables */}
+            {/* Renderizar para mostrar data en datatables (listado de todas las ordenes*/}
             <DataTableExtensions {...tableData} className="filtro">
               <DataTable
                 columns={columns}
