@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Modal, Button } from 'react-bootstrap';
 
 const handleClick = (title) => {
   console.log(`You clicked me! ${title}`);
@@ -8,66 +9,69 @@ const submitHandler = (event) => {
   location.replace("/editarOrden");
 };
 
-export const columns = [
+export const columnas = [
   {
-    name: "No orden",
-    selector: "id",
+    name: "Cod.",
+    selector: row => row._id,
+    sortable: true
+  },
+  {
+    name: "Paquete",
+    selector: row => row.tipo_paquete,
     sortable: true
   },
   {
     name: "Estado",
-    selector: "estado",
+    selector: row => row.estado_pedido,
     sortable: true
   },
   {
-    name: "Fecha Generado",
-    selector: "fecha",
+    name: "Destinatario",
+    selector: row => row.nombre_destinatario,
+    sortable: true
+  },
+  {
+    name: "Fecha entrega",
+    selector: row => row.fecha_entrega,
+    sortable: true
+  },
+  {
+    name: "Horario de entrega",
+    selector: row => row.horario_entrega,
     sortable: true
   },
   {
     name: "Dirección entrega",
-    selector: "direccion",
+    selector: row => row.direccion_entrega,
     sortable: true
   },
   {
-    name: "Acción",
+    name: "Acciones",
     sortable: false,
-    selector: "null",
+    selector: row => row.null,
     cell: (d) => [
       <button
-      key={d.title}
-      type="button" class="btn btn-outline-primary"
-      onClick={submitHandler}
-      style={{ marginRight: "5px" }} >
-      Edit
-    </button>,
-    <button 
-    type="button" class="btn btn-outline-danger"
-    onClick={handleClick.bind(this, d.title)}>
-      Delete
-      </button>
+        key={d.title}
+        type="button" className="btn btn-outline-primary"
+        onClick={handleClick.bind(this, d.title)}
+        style={{ color: "white", fontWeight: "bold", marginRight: "5px", width: "60px", height: "30px", fontSize: "12px", minWidth: "45%", background: "green" }} >
+        View
+      </button>,
+      <button
+        key={d.title}
+        type="button" className="btn btn-outline-primary"
+        onClick={submitHandler}
+        style={{ color: "blue", fontWeight: "bold", marginRight: "5px", width: "65px", height: "30px", fontSize: "12px", minWidth: "40%", background: "lightblue" }} >
+        Edit
+      </button>,
+      <button
+        key={d.title}
+        type="button" className="btn btn-outline-danger"
+        onClick={handleClick.bind(this, d.title)}
+        style={{ color: "white", fontWeight: "bold", marginRight: "5px", width: "65px", height: "30px", fontSize: "12px", minWidth: "50%", background: "tomato" }} >
+        Cancel
+      </button>,
     ]
   }
 ];
 
-/*
-export const data = [
-  {
-    id: 1,
-    estado: "Guardado",
-    fecha: "20/09/2022",
-    direccion: "Callle 1 # 1-1",
-  },
-  {
-    id: 2,
-    estado: "Cancelado",
-    fecha: "21/09/2022",
-    direccion: "Callle 1 # 1-1",
-  },
-  {
-    id: 3,
-    estado: "Cumplido",
-    fecha: "21/09/2022",
-    direccion: "Callle 1 # 1-1",
-  }   
-];*/
