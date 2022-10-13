@@ -11,8 +11,7 @@ import {
   MDBCheckbox,
   MDBRow,
   MDBCol
-}
-  from 'mdb-react-ui-kit';
+} from 'mdb-react-ui-kit';
 
 const EditarOrdenComponent = () => {
   const submitHandler = (event) => {
@@ -26,17 +25,20 @@ const EditarOrdenComponent = () => {
       </Container>
       <MDBContainer fluid className='d-flex align-items-center justify-content-center bg-image' style={{ backgroundImage: 'url(InstaYa\media\bg.jpg)' }}>
         <div className='mask gradient-custom-3'></div>
-        <MDBCard className='m-5' style={{ minxWidth: '600px', width: '70%' }}>
+        <MDBCard className='m-5' style={{ minxWidth: '600px', width: '70%', display: 'inline-block'}} >
           <MDBBtn outline rounded color='dark' onClick={submitHandler} style={{ display: 'inline-block', marginLeft: '5%', marginRight: 'auto', marginTop: '1.5em', width: '100px' }}>
             volver
+          </MDBBtn>
+          <MDBBtn outline rounded color='dark' onClick={submitHandler} style={{ display: 'inline-block', marginLeft: '5%', marginRight: 'auto', marginTop: '1.5em', width: '100px' }}>
+            Guardar
           </MDBBtn>
           <MDBCard className='m-5' style={{ minxWidth: '600px', width: '90%' }}>
             <MDBCardBody className='px-5'>
               <div style={{ marginLeft: 'auto', marginRight: '0', marginBottom: '-5%', display: 'flex' }}>
-                <p style={{ marginLeft: 'auto', marginRight: '0', display: 'inline' }}>nro orden:  <p style={{ fontWeight: 'bold' }}> A01 </p> </p>
-                <p style={{ marginLeft: 'auto', marginRight: '0', display: 'inline' }}>estado: <p style={{ fontWeight: 'bold' }}> generado </p></p>
+                <p style={{ marginLeft: 'auto', marginRight: '0', display: 'inline' }}>Nro orden:  <p style={{ fontWeight: 'bold' }}> A01 </p> </p>
+                <p style={{ marginLeft: 'auto', marginRight: '0', display: 'inline' }}>Estado: <p style={{ fontWeight: 'bold' }}> Generado </p></p>
               </div>
-              <h5 style={{ paddingTop: '10px' }}>datos recogida:</h5><br></br>
+              <h5 style={{ paddingTop: '10px' }}>Datos recogida:</h5><br></br>
               <MDBRow>
                 <MDBCol>
                   <MDBInput wrapperClass='mb-4' label='hora' placeholder='23:00' id='form1' type='text' style={{ width: '65px' }} />

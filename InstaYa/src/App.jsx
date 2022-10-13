@@ -6,6 +6,8 @@ import OrdenesComponent from './components/ordenes/ordenes';
 import PaginaPrincipal from './components/PaginaPrincipal/PaginaPrincipal';
 import CrearOrdenComponent from './components/crearOrden/crearOrden';
 import EditarOrdenComponent from './components/editarOrden/editarOrden';
+import CrudModal from './components/modales/CrudModal';
+
 
 function App() {
 
@@ -20,6 +22,7 @@ function App() {
           <Route path="/ordenes" element={<OrdenesComponent />} />
           <Route path="/crearOrden" element={<CrearOrdenComponent />} />
           <Route path="/editarOrden" element={<EditarOrdenComponent />} />
+          <Route path="/api/auxiliar" element={<CrudModal/>} />
         </Routes>
       </BrowserRouter>
     </>

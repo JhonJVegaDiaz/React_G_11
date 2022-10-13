@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Modal, Button } from 'react-bootstrap';
 
 const handleClick = (title) => {
   console.log(`You clicked me! ${title}`);
@@ -47,25 +48,25 @@ export const columnas = [
   {
     name: "Acciones",
     sortable: false,
-    selector: "null",
+    selector: row => row.null,
     cell: (d) => [
       <button
         key={d.title}
-        type="button" class="btn btn-outline-primary"
+        type="button" className="btn btn-outline-primary"
         onClick={handleClick.bind(this, d.title)}
         style={{ color: "white", fontWeight: "bold", marginRight: "5px", width: "60px", height: "30px", fontSize: "12px", minWidth: "45%", background: "green" }} >
         View
       </button>,
       <button
         key={d.title}
-        type="button" class="btn btn-outline-primary"
+        type="button" className="btn btn-outline-primary"
         onClick={submitHandler}
         style={{ color: "blue", fontWeight: "bold", marginRight: "5px", width: "65px", height: "30px", fontSize: "12px", minWidth: "40%", background: "lightblue" }} >
         Edit
       </button>,
       <button
         key={d.title}
-        type="button" class="btn btn-outline-danger"
+        type="button" className="btn btn-outline-danger"
         onClick={handleClick.bind(this, d.title)}
         style={{ color: "white", fontWeight: "bold", marginRight: "5px", width: "65px", height: "30px", fontSize: "12px", minWidth: "50%", background: "tomato" }} >
         Cancel
