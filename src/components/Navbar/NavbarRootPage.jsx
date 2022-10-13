@@ -12,10 +12,10 @@ function NavBarComponent() {
             {[true].map((expand) => (
                 <Navbar key={expand} bg="light" expand={expand} className="mb-3">
                     <Container className="navbar-container" >
-                        <Navbar.Brand style={{ width: '700px' }} href="/" >
-                            <img src={logo} style={{ width: '20%' }} alt="Imagen-Logo">
+                        <Navbar.Brand style={{ width: '600px', height:'150px' }} href="/" >
+                            <img src={logo} style={{ width: '30%', marginTop: '20px'}} alt="Imagen-Logo">
                             </img>
-                            <h1 style={{ fontSize: '40px', fontFamily: 'Lato', display: 'inline-block', padding: '10px', marginLeft: '15px' }}> Insta-YA</h1>
+                            <h1 style={{ fontSize: '50px', fontFamily: 'Lato', display: 'inline-block', padding: '10px', marginLeft: '15px', marginTop:'30px' }}> Insta-YA</h1>
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
                         <Navbar.Offcanvas
@@ -39,6 +39,7 @@ function NavBarComponent() {
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item href="/">Exit</NavDropdown.Item>
                                     </NavDropdown>
+                                    <Nav.Link href="/ordenes">Ver ordenes</Nav.Link>
                                     <Nav.Link href="/crearOrden">Solicitar servicio</Nav.Link>
                                     <Nav.Link href="/signup">Crear usuario</Nav.Link>
                                     <Navbar.Text>

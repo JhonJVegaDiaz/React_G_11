@@ -23,6 +23,7 @@ from 'mdb-react-ui-kit';
 import '../login/login.css'
 
 
+
 async function loginUser(credentials) {
  return fetch('http://localhost:9000/api/signin/', {
    method: 'POST',
@@ -33,12 +34,17 @@ async function loginUser(credentials) {
  })
    .then(data => data.json())
         .then(body => {
+            console.log(body.error);
             if(body.error){
-                document.getElementById("modalBtn").click()
+              //const erroM = document.getElementById("mensajeError");
+              //erroM.innerHTML(body.error);
+              document.getElementById("modalBtn").click()
             }
 
             if(body.accessToken){
-                console.log(body)
+                localStorage.setItem("accessToken", body.accessToken);
+                console.log(body);
+                return location.replace("/ordenes")
             }
         })
 }
@@ -153,7 +159,7 @@ const LoginComponent = () => {
               <MDBModalTitle>Error</MDBModalTitle>
               <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
             </MDBModalHeader>
-            <MDBModalBody>El usuario no está creado</MDBModalBody>
+            <MDBModalBody > <div id='mensajeError'> Usuario o clave errada</div>  </MDBModalBody>
 
             <MDBModalFooter>
               <MDBBtn color='secondary' onClick={toggleShow}>
